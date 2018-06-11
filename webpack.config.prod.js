@@ -1,5 +1,5 @@
-let webpack = require('webpack')
-import baseConfig from './webpack.config.base'
+const webpack = require('webpack')
+const baseConfig = require('./webpack.config.base')
 
 module.exports = {
     ...baseConfig,
