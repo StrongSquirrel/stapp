@@ -10,7 +10,7 @@
 		<% } %>
 	</head>
 	<body>
-		<div id="stapp"></div>
+		<div id="strsqr"></div>
 		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 		<script type="text/javascript" src="<%if (!htmlWebpackPlugin.options.ghPage) { %>/<% } %><%=htmlWebpackPlugin.files.chunks[chunk].entry%>"></script>
 		<% } %>

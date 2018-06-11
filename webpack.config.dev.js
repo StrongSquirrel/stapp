@@ -1,36 +1,33 @@
 let webpack = require('webpack')
-import baseConfig from './webpack.config.base'
-
-const port = 3001
+let baseConfig = require('./webpack.config.base')
 
 module.exports = {
     ...baseConfig,
+    mode: 'development',
     devtool: '#inline-source-map',
     entry: [
-        ...baseConfig.entry,
         'eventsource-polyfill', // necessary for hot reloading with IE
-        'webpack-dev-server/client?http://0.0.0.0:' + port,
-        'webpack/hot/only-dev-server'
+        // Include an alternative client for WebpackDevServer. A client's job is to
+        // connect to WebpackDevServer by a socket and get notified about changes.
+        // When you save a file, the client will either apply hot updates (in case
+        // of CSS changes), or refresh the page (in case of JS changes). When you
+        // make a syntax error, this client will display a syntax error overlay.
+        // Note: instead of the default WebpackDevServer client, we use a custom one
+        // to bring better experience for Create React App users. You can replace
+        // the line below with these two lines if you prefer the stock client:
+        // require.resolve('webpack-dev-server/client') + '?/',
+        // require.resolve('webpack/hot/dev-server'),
+        require.resolve('react-dev-utils/webpackHotDevClient'),
+        ...baseConfig.entry,
     ],
     plugins: [
         ...baseConfig.plugins,
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
     ],
     module: {
         ...baseConfig.module,
-        loaders: [
-            ...baseConfig.module.loaders
+        rules: [
+            ...baseConfig.module.rules
         ]
-    },
-    devServer: {
-        historyApiFallback: true,
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 1000
-        },
-        stats: {colors: true},
-        hot: true,
-        port: port
     }
 }

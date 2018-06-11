@@ -31,13 +31,7 @@ const appInitFailure = (err = 'Something went wrong') => {
 
 export const doAppInit = () => {
     return function (dispatch) {
-
         dispatch(appInitRequest())
-
-        //Emulate async operation,
-        //here you may call XHR to your backend
-        //and dispatch `appInitSuccess` or `appInitFailure` actions
-        setTimeout(() => (dispatch(appInitSuccess())), 1000)
-
+        dispatch(appInitSuccess())
     }
 }

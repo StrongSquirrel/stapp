@@ -29,9 +29,11 @@ module.exports = {
         })
     ],
     module: {
-        loaders: [
-            {test: /\.js$/, loaders: ['babel-loader'], include: path.join(__dirname, 'source/scripts')},
-            {test: /\.jsx$/, loaders: ['babel-loader'], include: path.join(__dirname, 'source/scripts')},
+        rules: [
+            {test: /\.(js|jsx)$/, loader: require.resolve('babel-loader'), include: path.join(__dirname, 'source/scripts'), options: {
+                cacheDirectory: true,
+                plugins: ['react-hot-loader/babel'],
+            }},
             {test: /\.css$/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader', publicPath: '../'})},
             {test: /\.(png|jpg)$/, loader: 'file-loader?name=images/[name].[hash:4].[ext]'},
             {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=fonts/[name].[hash:4].[ext]&mimetype=application/font-woff'},

@@ -6,3 +6,4 @@ npm-debug.log
 dist/
 config.js
 .idea/
+yarn-error.log
