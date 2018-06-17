@@ -5,7 +5,7 @@ var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
     entry: [
-        './source/scripts/index'
+        './source/scripts/client'
     ],
     output: {
         filename: 'js/app.[hash:4].js',
@@ -25,7 +25,12 @@ module.exports = {
             ghPage: process.env.GH_PAGES || false,
             filename: 'index.html',
             inject: false,
-            template: '!!ejs-loader!source/index.ejs'
+            template: '!!ejs-loader!source/index.ejs',
+            hash: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            }
         })
     ],
     module: {
