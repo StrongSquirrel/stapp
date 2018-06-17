@@ -1,7 +1,7 @@
-var path = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
     entry: [
@@ -9,7 +9,7 @@ module.exports = {
     ],
     output: {
         filename: 'js/app.[hash:4].js',
-        path: path.join(__dirname, 'dist')
+        path: path.join(__dirname, 'dist'),
     },
     resolve: {
         extensions: ['.js', '.jsx']

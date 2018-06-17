@@ -11,6 +11,8 @@ import {renderRoutes} from 'react-router-config'
 import createHistory from 'history/createBrowserHistory'
 
 const initialState = window.__INITIAL_STATE__
+delete window.__INITIAL_STATE__
+
 const history = createHistory()
 const store = configureStore(history, initialState)
 

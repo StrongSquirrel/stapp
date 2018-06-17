@@ -9,7 +9,7 @@ export function configureStore(history, initialState = {}) {
     const router = routerMiddleware(history)
     let middlewares = [ router, thunk ]
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && typeof window != 'undefined') {
         const logger = createLogger({collapsed: true, diff: true})
         middlewares.push(logger)
     }
