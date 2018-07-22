@@ -1,8 +1,16 @@
+// @flow
+
 import React, {Component} from 'react'
 
-class Error extends Component {
+import type {Error as ErrorType} from '../types/Error'
 
-    constructor(props) {
+type Props = {
+    err: ErrorType
+}
+
+class Error extends Component<Props> {
+
+    constructor(props: Props) {
         super(props)
     }
 
@@ -12,7 +20,7 @@ class Error extends Component {
             <div>
                 <div className="middle">
                     <h2>😨 Application error</h2>
-                    <div>{ err }</div>
+                    <div>{err.message}</div>
                 </div>
             </div>
         )
