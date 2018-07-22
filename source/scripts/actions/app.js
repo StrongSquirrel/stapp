@@ -1,21 +1,30 @@
+// @flow
+
 export const APP_CLEAR_ERRS = 'APP_CLEAR_ERRS'
 export const APP_INIT_REQUEST = 'APP_INIT_REQUEST'
 export const APP_INIT_SUCCESS = 'APP_INIT_SUCCESS'
 export const APP_INIT_FAILURE = 'APP_INIT_FAILURE'
 
-export const appClearErrs = () => {
+import type {
+    Action
+} from '../types/Action'
+import type {
+    Dispatch
+} from '../types/Store'
+
+export const appClearErrs = (): Action => {
     return {
         type: APP_CLEAR_ERRS
     }
 }
 
-const appInitRequest = () => {
+const appInitRequest = (): Action => {
     return {
         type: APP_INIT_REQUEST
     }
 }
 
-const appInitSuccess = () => {
+const appInitSuccess = (): Action => {
     return {
         type: APP_INIT_SUCCESS
     }
@@ -30,7 +39,7 @@ const appInitFailure = (err = 'Something went wrong') => {
 }
 
 export const doAppInit = () => {
-    return function (dispatch) {
+    return function (dispatch: Dispatch) {
         dispatch(appInitRequest())
         dispatch(appInitSuccess())
     }

@@ -1,3 +1,5 @@
+// @flow
+
 import {bindActionCreators} from 'redux'
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
@@ -6,9 +8,20 @@ import {connect} from 'react-redux'
 import Load from '../components/Load'
 import Error from '../components/Error'
 import {hot} from 'react-hot-loader'
-import * as AppActions from '../actions/app'
+import {
+    doAppInit
+} from '../actions/app'
 
-class App extends Component {
+import type {Error as ErrorType} from '../types/Error'
+
+type Props = {
+    doAppInit: typeof doAppInit,
+    isLoading: boolean,
+    err: ErrorType,
+    route: any
+}
+
+class App extends Component<Props> {
 
     constructor(props) {
         super(props)
@@ -34,7 +47,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(AppActions, dispatch)
+    return bindActionCreators({
+        doAppInit
+    }, dispatch)
 }
 
 export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(App)))
